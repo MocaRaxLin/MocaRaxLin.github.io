@@ -17,7 +17,7 @@ Any way，一開始上班馬上就被迫學習">
 覺得自己有受虐傾向
 
 Any way，一開始上班馬上就被迫學習">
-<meta property="og:updated_time" content="2017-02-12T15:43:24.447Z">
+<meta property="og:updated_time" content="2017-02-12T15:44:47.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一週上班">
 <meta name="twitter:description" content="這世界掙錢真的很不容易覺得去實習好辛苦卻又值得感覺怎麼這麼矛盾……從我2月6號進OysterX那天開始也過了一個禮拜了。這一個禮拜感覺好像待在精神時光屋一樣，這一週的成長幅度幾乎等於過去認真的我兩周的成長幅度。如果去掉認真兩個字，恐怕接近一個月的成長幅度吧。兩到四倍的速度來成長一開始的確讓我有點吃不消，可是成長後的自己真的讓我很滿意。
@@ -61,9 +61,9 @@ Any way，一開始上班馬上就被迫學習">
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mocharaxlin.github.io"></form>
@@ -104,7 +104,7 @@ Any way，一開始上班馬上就被迫學習">
 <p>Any way，一開始上班馬上就被迫學習<a href="https://unity3d.com/" target="_blank" rel="external">Unity3D</a>，我簡單做了一個投籃程式交差。當我沉浸於自己好厲害時，下一個挑戰馬上就來了！那就是Git。<br><a href="https://github.com" target="_blank" rel="external">GitHub</a>簡單啦!我自以為是的想……<br>人家是用<a href="https://bitbucket.org/" target="_blank" rel="external">GitBucket</a>，誰在給你用人性化(智障)的GitHub<br>於是乎又得重新把 push, pull request, commit, 等等概念重新熟悉。然後開始操作新的工具 Source Tree。<br>我花了一天熟悉工具，沒錯只能用一天來熟悉工具，不能再多了！<br>接著隔天，我馬上接手產品開發……<br><strong>好快</strong></p>
 <h3 id="挑戰一-看地球的視野不要超過一定的緯度"><a href="#挑戰一-看地球的視野不要超過一定的緯度" class="headerlink" title="挑戰一 看地球的視野不要超過一定的緯度"></a>挑戰一 看地球的視野不要超過一定的緯度</h3><p>有了先前寫過的投籃程式控制，我想這個應該算簡單。不過我實際寫下去才發覺是得花心力下去的！<br>簡單的說，我一開始就卡關了……<br>例如說，我該如何讓攝影機照超過北緯65度後，仍然可以將攝影機移到北緯65度以下？<br>我想了將近半小時，讓攝影機超過65度就自動回到65度以下。最後，PM才說你不用這樣想啊！只要判斷是在北半球且超過65度時，鎖住攝影機上移的功能；南半球同理，不就行了嗎？<br>恩……我真傻，這麼簡單的問題居然想歪了。所幸我們家的PM點出這個盲點，我才能迅速解開這關。好球啊PM!我想要一步步變得像你這麼厲害。</p>
 <h3 id="挑戰二-為我們的地球加上地標"><a href="#挑戰二-為我們的地球加上地標" class="headerlink" title="挑戰二 為我們的地球加上地標"></a>挑戰二 為我們的地球加上地標</h3><p>這個挑戰大概比挑戰一難度還要高4倍吧！為什麼我會這樣覺得呢？因為我花了四倍的時間在解決這個問題。<br>這次的目標是要將地球上的城市所在位置加上一個屬於那座城市的地標圖片。例如說，我到了台北讓台北成為一個城市點，這時候台北的位置上會有一個101大樓的圖片，圖片會隨著攝影機看台北的角度和距離略做修改，讓101看起來很像站在地球上的立體物件。很簡單吧！<br>才怪！<br>按照正常人的想法，既然是站在地球上的物件，那好辦！只要有地標的經緯度，讓它轉成空間座標，直接放在地球上，角度的問題算一算應該有解。可是呢……</p>
-<blockquote><p>我們的地標要貼在2d螢幕上，不存在真正在3d空間中，這樣程式會跑比較快。</p>
+<blockquote><p>我們的地標要貼在2d螢幕上，不存在真正的3d空間中，這樣程式會跑比較快。</p>
 <footer><strong>我們的PM大大</strong></footer></blockquote>
 <p>正常人真的會這樣想嗎？我這時候已經對PM有點佩服了！我認同他的說法，的確這樣算會快很多。當我們的App不用顯示城市不在螢幕內的地標，運算上省略的螢幕外的城市，超棒的！只是，小廢物我要開始閱讀人家PM的程式碼，看看人家是怎麼做到這種精湛的技術，這就花了我一天多，而且看了還不是很懂。同時，這一天多看著跟我同時間一起進來的Intern不斷完成被交予的任務覺得心裡超級慌。「我是不是比他們笨」的想法，時不時跑出來作祟。</p>
 <p>幾乎荒廢的一天多後，總算在下班前能跟PM大大討論方法，我們互相交流一些想法。地標大小很簡單，用3D空間中的距離比例去縮放地標的大小就行，找一個適合縮放的函式去實現這個功能。這我有把握回到家就能寫出來，而我也確實寫出來了！困難點在旋轉的部分。PM說他希望我們App上的地標能夠像<a href="https://itunes.apple.com/tw/app/barefoot-world-atlas/id489221652?mt=8" target="_blank" rel="external">Barefoot World Atlas</a>一樣有立體感，可是它那神奇的旋轉角度真的讓我對數學驚嘆不已，我根本看不出那是怎麼寫的！</p>
@@ -125,7 +125,7 @@ Any way，一開始上班馬上就被迫學習">
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mocharaxlin.github.io/2017/02/11/第一週上班/" data-id="ciz2ubv75000148xg4wpukv85" class="article-share-link">Share</a>
+      <a data-url="https://mocharaxlin.github.io/2017/02/11/第一週上班/" data-id="ciz2udmqo0003ywxgztg6qs7c" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OysterX/">OysterX</a></li></ul>
@@ -138,7 +138,7 @@ Any way，一開始上班馬上就被迫學習">
   
   
     <a href="/2017/01/31/自我介紹/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">自我介紹</div>
     </a>
   
@@ -153,7 +153,7 @@ Any way，一開始上班馬上就被迫學習">
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Work/">Work</a></li></ul>
     </div>
@@ -163,7 +163,7 @@ Any way，一開始上班馬上就被迫學習">
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/OysterX/">OysterX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li></ul>
     </div>
@@ -173,7 +173,7 @@ Any way，一開始上班馬上就被迫學習">
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
       <a href="/tags/OysterX/" style="font-size: 10px;">OysterX</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a>
     </div>
@@ -192,7 +192,7 @@ Any way，一開始上班馬上就被迫學習">
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -221,7 +221,7 @@ Any way，一開始上班馬上就被迫學習">
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Justin Lin<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
