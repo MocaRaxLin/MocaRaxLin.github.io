@@ -61,9 +61,68 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-新朋友HowGoogleWork&amp;StyleGuide" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-第三週上班" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/19/新朋友HowGoogleWork&StyleGuide/" class="article-date">
+    <a href="/2017/02/25/第三週上班/" class="article-date">
+  <time datetime="2017-02-25T01:34:00.000Z" itemprop="datePublished">2017-02-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Work/">Work</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/25/第三週上班/">第三週上班</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="應該是最後一次上班週記"><a href="#應該是最後一次上班週記" class="headerlink" title="應該是最後一次上班週記"></a>應該是最後一次上班週記</h2><h3 id="謎：這麼快就休刊？不要臉，富奸喔！"><a href="#謎：這麼快就休刊？不要臉，富奸喔！" class="headerlink" title="謎：這麼快就休刊？不要臉，富奸喔！"></a>謎：這麼快就休刊？不要臉，富奸喔！</h3><p>別打我啊！(飛奔~)<br>大家別激動，拜託你們放下拳頭聽我說，這麼快來到最後一次是有原因的。</p>
+<p>本來應該要每週更新說說我每週的工作狀況，可是我發覺好像有點困難。原因是我很難記住很多事，感覺像是發生太多事後腦袋裝不下了，所以許多有趣的事就變得模糊。導致最後周末要開始寫週記，我卻寫不出什麼東西。</p>
+<p>這次我寫週記的時候，我還順便翻翻專案上面的紀錄，看看這樣做能不能讓我回想起來。希望可以！</p>
+<p>這週上班也接到很多任務呢！我們開始吧！</p>
+<h3 id="任務一，讓地標遠離鏡頭時變小"><a href="#任務一，讓地標遠離鏡頭時變小" class="headerlink" title="任務一，讓地標遠離鏡頭時變小"></a>任務一，讓地標遠離鏡頭時變小</h3><p>哪尼？這不是已經變小了嗎？我記得我設計的函式是直接使用地標位置與相機距離考慮的呀！我用地標大小與距離製作出一個斜率小於零的線性函數，概念上十分正確不是嗎？</p>
+<p>PM大大：啊，原來你有縮小他？可是他還是很大耶！<br>我：我看看Scale參數。<br>我：……。<br>我：那個其實地標有變小，只是從1.4被縮到1.3倍大而已……<br>PM大大：再大一點吧！<br>我：好喔！</p>
+<p>我開始思索要怎麼強化放大縮小功能。相機近的時候效果要明顯，遠的時候不明顯。該怎麼做呢？PM大大建議我多加一個相機與地球的距離去思考。他說地標與相機的距離(r)除以地心與相機的距離(R)得到的數值(r/R)或許可以解決這個問題。雖然我心裡懷疑真的行嗎？可是我現在暫時沒其他想法，不如姑且一試。</p>
+<p>接著我來解析分數r/R的特性。根據R在分母的位置上，相機離地球近的時候地標會放大，翻之縮小。OK，這沒問題。r在分子上，所以相機離地標越近，地標就越小。喔！這裡出錯了！地標應該要越大才對。那麼我們來修正一下式子吧！我把式子改成(1-r/R)。這樣一來就解決囉！對了！r/R有一個特性那就是它的值域是[0,1]。因此分母R的特性在(1-r/R)依然保留喔！</p>
+<p>修改完code後，RUN！啊咧，怎麼還是一樣沒小多少？難道是我的分數算錯了嗎？放大縮小的效果好不明顯。咦？要強化效果，這句話怎麼這麼耳熟？哦，我想起來了！是之前我處理地標旋轉的時候用過的次方法。雖然這個方法後來沒用，可是它帶出來的效果確實不賴。來吧！為我們的(1-r/R)加上次方吧！</p>
+<p>效果十分顯著！成功！任務一完成！</p>
+<h3 id="任務二，挑戰讓地標沿著地平線下降而不是消失"><a href="#任務二，挑戰讓地標沿著地平線下降而不是消失" class="headerlink" title="任務二，挑戰讓地標沿著地平線下降而不是消失"></a>任務二，挑戰讓地標沿著地平線下降而不是消失</h3><p>原先我以為這是一個很困難的挑戰，想不到這關還蠻容易的。<br>如果要沿著地平線下降最後隱沒在地平線下，那我們必須要顯示一部分的地標，這些地標所在位置正好是相機照不到的位置。想完成這件事剛好有一個現成的函式可以做到。這函式是PM大大用來看地球上的位置是不是在相機的視角內，可是他寫的不完美，導致不在相機視野內的位置也被囊括近來。真幸運，直接拿來用囉！然後再使用神奇的<a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank" rel="external">Canvas</a>轉換法讓不在相機視野內的地標換到後方的畫布上就結束囉！</p>
+<p>PM大大為之驚奇，成功！任務二完成！</p>
+<p>當然除了這兩個任務之外還有其他小任務。小任務們都和整個系統比較密切，任務聽起來都很簡單，可是實際上都很難而且繁雜。例如，我關掉地標系統結果城市名稱卻沒有跟著下來。又例如，城市名稱會閃爍。這些貌似簡單的問題，實際上可是花了我很多時間處理。我想這也是軟體工程最複雜的一環吧！這裡跟大家說聲抱歉，我可能沒辦法和大家分享這些，因為我也不確定我解決的方法是不是真把這些bug解決了。我不在這裡獻醜囉！Sorry~</p>
+<p>這週除了接任務之外也有其他有趣的事呢！我們團隊的新成員Jack回歸。前一陣子他在當替代役，同時幫助我們的PM大大破解一款競爭產品，我覺得他好厲害。現在他是我們OysterX團隊的資料庫負責人。目前我們正在努力的把OyterX裡的地標系統做好，希望這項功能會讓產品受到大家喜愛。</p>
+<h3 id="來吧，228連假"><a href="#來吧，228連假" class="headerlink" title="來吧，228連假"></a>來吧，228連假</h3><p>這次的週記就先到這吧！隨著228連假到來，我也想放鬆一下。<br>我最近剛好找到神奇寶貝鑽石與珍珠的影片，然後我把他看完了。潮爽Der！這季最大的賣點是女主角<a href="https://wiki.52poke.com/zh-hant/%E5%B0%8F%E5%85%89%EF%BC%88%E5%8A%A8%E7%94%BB%EF%BC%89" target="_blank" rel="external">小光</a>，她真的好可愛喔&gt;&lt;！加上她身旁可愛的企鵝波加曼，幫她一整個大加分！最重要的是，她的成長過程。小光想和媽媽一樣成為一位頂尖的神奇寶貝協調訓練師。為了達成夢想，她不斷挑戰神奇寶貝華麗大賽。過程中有開心、有難過、有成功、有失敗。她開心的時候我也為她感到開心，她失敗低潮時我也為她感到惋惜。她掛在嘴邊的<strong>沒問題</strong>，雖然常常很有問題，卻是隨著劇情推進和她的成長慢慢的變得真的沒問題而讓人放心。是個不可思議的女主角呢！</p>
+<p>看完神奇寶貝鑽石珍珠後，我開了<a href="https://www.twitch.tv/" target="_blank" rel="external">twitch</a>發現今天有<a href="https://www.facebook.com/HongKongEsports/?fref=ts" target="_blank" rel="external">HKE</a>和<a href="https://www.facebook.com/FlashWolves/?fref=ts" target="_blank" rel="external">閃電狼</a>的賽事。雖然HKE不幸落敗，但是閃電狼剛才驚險2:1勝過歐洲勁旅<a href="https://www.facebook.com/H2kGaming.EU/?fref=ts" target="_blank" rel="external">H2K</a>。目前他們正在和另一支歐洲隊<a href="https://www.facebook.com/G2esports/?fref=ts" target="_blank" rel="external">G2</a>打決賽。祝他們好運，台灣的小朋友真的很棒！</p>
+<p>這週的週記就到這吧！看<a href="https://www.twitch.tv/esl_lol" target="_blank" rel="external">IEM</a>決賽，看閃電狼全力發揮囉！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mocharaxlin.github.io/2017/02/25/第三週上班/" data-id="cizn9bo6h0004gcxg3irv82v4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OysterX/">OysterX</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-新朋友到來" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/19/新朋友到來/" class="article-date">
   <time datetime="2017-02-19T02:50:00.000Z" itemprop="datePublished">2017-02-19</time>
 </a>
     
@@ -79,7 +138,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/新朋友HowGoogleWork&StyleGuide/">新朋友HowGoogleWorks&amp;StyleGuide</a>
+      <a class="article-title" href="/2017/02/19/新朋友到來/">新朋友到來</a>
     </h1>
   
 
@@ -101,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mocharaxlin.github.io/2017/02/19/新朋友HowGoogleWork&StyleGuide/" data-id="cizcdz90g0006coxgumqm7u74" class="article-share-link">Share</a>
+      <a data-url="https://mocharaxlin.github.io/2017/02/19/新朋友到來/" data-id="cizn9bo650000gcxgte0q70bn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading/">Reading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Writing/">Writing</a></li></ul>
@@ -159,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mocharaxlin.github.io/2017/02/18/第二週上班/" data-id="cizcdz90e0005coxga5i9m8m3" class="article-share-link">Share</a>
+      <a data-url="https://mocharaxlin.github.io/2017/02/18/第二週上班/" data-id="cizn9bo6j0005gcxg4pnjhrh0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OysterX/">OysterX</a></li></ul>
@@ -224,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mocharaxlin.github.io/2017/02/11/第一週上班/" data-id="cizcdz9080001coxgexcugoyd" class="article-share-link">Share</a>
+      <a data-url="https://mocharaxlin.github.io/2017/02/11/第一週上班/" data-id="cizn9bo690001gcxg9kuiqriv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OysterX/">OysterX</a></li></ul>
@@ -270,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mocharaxlin.github.io/2017/01/31/自我介紹/" data-id="cizcdz90c0003coxgzglqomnh" class="article-share-link">Share</a>
+      <a data-url="https://mocharaxlin.github.io/2017/01/31/自我介紹/" data-id="cizn9bo6n0009gcxgs77k8tx2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
@@ -309,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mocharaxlin.github.io/2017/01/31/MochaRax部落格開張/" data-id="cizcdz9040000coxgaoa93pe0" class="article-share-link">Share</a>
+      <a data-url="https://mocharaxlin.github.io/2017/01/31/MochaRax部落格開張/" data-id="cizn9bo6l0006gcxgljhs7hpb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
@@ -350,7 +409,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/OysterX/" style="font-size: 20px;">OysterX</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Writing/" style="font-size: 10px;">Writing</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a>
+      <a href="/tags/OysterX/" style="font-size: 20px;">OysterX</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Writing/" style="font-size: 10px;">Writing</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a>
     </div>
   </div>
 
@@ -372,7 +431,11 @@
       <ul>
         
           <li>
-            <a href="/2017/02/19/新朋友HowGoogleWork&StyleGuide/">新朋友HowGoogleWorks&amp;StyleGuide</a>
+            <a href="/2017/02/25/第三週上班/">第三週上班</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/19/新朋友到來/">新朋友到來</a>
           </li>
         
           <li>
@@ -385,10 +448,6 @@
         
           <li>
             <a href="/2017/01/31/自我介紹/">自我介紹</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/31/MochaRax部落格開張/">MochaRax部落格開張</a>
           </li>
         
       </ul>
